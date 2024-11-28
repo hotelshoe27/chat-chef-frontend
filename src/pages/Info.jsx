@@ -3,6 +3,7 @@ import PrevButton from "../components/PrevButton";
 import InfoInput from "../components/InfoInput";
 import AddButton from "../components/AddButton";
 import Button from "../components/Button";
+import Title from "../components/Title";
 
 const Info = () => {
   // logic
@@ -27,11 +28,7 @@ const Info = () => {
       {/* END:뒤로가기 버튼 */}
       <div className="h-full flex flex-col">
         {/* TODO:Title 컴포넌트 */}
-        <div className="px-2 pt-6">
-          <h1 className="text-4.5xl font-black text-white">
-            당신의 냉장고를 알려주세요
-          </h1>
-        </div>
+        <Title mainTitle={'당신의 냉장고를 알려주세요'} subTitle={''}/>
         {/* // TODO:Title 컴포넌트 */}
 
         {/* START:form 영역 */}
