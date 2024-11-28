@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PrevButton from "../components/PrevButton";
 import InfoInput from "../components/InfoInput";
 import AddButton from "../components/AddButton";
@@ -22,15 +22,25 @@ const Info = () => {
       text: '재료명',
       value: ''
     }
-    setIngredientList([...ingredientList, newItem]);
-    console.log("ingredientList: ", ingredientList);
-    
+    setIngredientList([...ingredientList, newItem]);   
   };
 
   const handleNext = () => {
     // console.log("chat페이지로 이동");
     // TODO: 최소 재료 한개 이상 유효성 체크
     history('/chat');
+  };
+
+  const handleRemove = (id) => {
+    console.log('id: ', id);
+    setIngredientList((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handleChange = (selectedItem) => {
+    setIngredientList((prev) =>
+      prev.map((item) => (item.id === selectedItem.id ?
+        selectedItem : item))
+  );
   };
 
   // const animalList = [
@@ -47,6 +57,13 @@ const Info = () => {
   //     name: 'sudal',
   //   }
   // ];
+
+
+  useEffect(() => {
+    // exe logic
+    console.log("ingredientList: ", ingredientList);
+
+  }, [ingredientList])
 
   // view
   return (
@@ -66,7 +83,7 @@ const Info = () => {
             {/* START:input 영역 */}
             <div>
               {ingredientList.map((item) => (
-                <InfoInput key={item.id} content={item} />
+                <InfoInput key={item.id} content={item} onChange={handleChange} onRemove={handleRemove} />
               ))}
               {/* <ul>
                 {animalList.map((animal, index) => (
