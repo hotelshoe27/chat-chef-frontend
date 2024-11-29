@@ -10,7 +10,6 @@ const Info = () => {
   // logic
   const history = useNavigate();
 
-  // TODO: set함수 추가하기
   const [ingredientList, setIngredientList] = useState([]); // 사용자가 입력할 재료 목록
 
   const addIngredient = () => {
@@ -26,9 +25,15 @@ const Info = () => {
   };
 
   const handleNext = () => {
-    // console.log("chat페이지로 이동");
-    // TODO: 최소 재료 한개 이상 유효성 체크
-    history('/chat');
+    // 입력값이 있는 배열
+    const filterDataList = ingredientList.filter((item) => item.value.trim() !== '');
+    if (filterDataList.length > 0) {
+      // 재료 입력 값이 있는 경우
+      history('/chat');
+      return
+    }
+    // 재료 입력 값이 없는 경우
+    alert('재료를 최소 1개 이상 입력해주세요.');
   };
 
   const handleRemove = (id) => {
@@ -42,22 +47,6 @@ const Info = () => {
         selectedItem : item))
   );
   };
-
-  // const animalList = [
-  //   {
-  //     id: 1,
-  //     name: 'dog',
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'cat',
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'sudal',
-  //   }
-  // ];
-
 
   useEffect(() => {
     // exe logic
@@ -85,13 +74,7 @@ const Info = () => {
               {ingredientList.map((item) => (
                 <InfoInput key={item.id} content={item} onChange={handleChange} onRemove={handleRemove} />
               ))}
-              {/* <ul>
-                {animalList.map((animal, index) => (
-                  <li key={`animal${index}`}>
-                    {animal.name}
-                  </li>
-                ) )}
-              </ul> */}
+
             </div>
             {/* END:input 영역 */}
           </form>
