@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PrevButton from "../components/PrevButton";
 import InfoInput from "../components/InfoInput";
 import AddButton from "../components/AddButton";
@@ -51,12 +51,6 @@ const Info = ({sendIngredientList}) => {
         selectedItem : item))
   );
   };
-
-  useEffect(() => {
-    // exe logic
-    console.log("ingredientList: ", ingredientList);
-
-  }, [ingredientList])
 
   // view
   return (
